@@ -3,8 +3,37 @@ import './App.css';
 import { useState, useRef } from 'react';
 import axios from "axios";
 
+function useWallet() {
+  const [wallet, setWallet] = useState(null);
+  return [
+    {
+      wallet
+    }, 
+    async () => {
+      const { ethereum } = window;
+      setWallet(ethereum);
+      if (ethereum) {
+        console.log("ETH detected");
+      } else {
+        console.log("No ETH wallet detected");
+      }
+
+      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log("Found an authorized account:", account);
+      } else {
+        console.log("No authorized account found")
+      }
+    }
+  ]
+}
+
 function App() {
   const [user, changeUser] = useState();
+  const [wallet, setWallet] = useWallet();
+
   const username = useRef();
   const password = useRef();
 
@@ -47,6 +76,11 @@ function App() {
           handleEvent(e);
           testBackend()
         }}>Test Backend</button>
+        {!wallet.wallet && (
+          <button onClick={setWallet}>
+            Connect Wallet
+          </button>
+        )}
       </header>
     </div>
   );
