@@ -14,7 +14,14 @@ let userDatabase = [
     pass: "MockPassword123!"
   }
 ];
-let homeDatabase = [];
+let homeDatabase = [
+  {
+    name: "Apartment",
+    location: "New York",
+    cost: 500,
+    reserved: ''
+  }
+];
 
 app.get('/', (req, res) => {
   res.send('Welcome to the AirBn3 backend!')
@@ -34,11 +41,16 @@ app.post('/login', jsonParser, (req, res) => {
   }
 });
 
+app.get('/home', (req, res) => {
+  res.send(homeDatabase);
+})
+
 app.post('/home', jsonParser, (req, res) => {
   const home = {
     name: req.body.name,
     location: req.body.location,
-    cost: req.body.cost
+    cost: req.body.cost,
+    reserved: ''
   }
 
   if(!home.name || !home.location || !home.cost) {

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState, useRef } from 'react';
 import axios from "axios";
@@ -32,6 +31,7 @@ function useWallet() {
 
 function App() {
   const [user, changeUser] = useState();
+  const [homes, viewHomes] = useState();
   const [wallet, setWallet] = useWallet();
 
   const username = useRef();
@@ -57,6 +57,11 @@ function App() {
       cost: cost
     })
     console.log(res.data);
+  }
+
+  async function getHomes() {
+    const res = await axios.get('http://localhost:4000/home')
+    viewHomes(res.data)
   }
 
   async function testBackend() {
@@ -110,6 +115,20 @@ function App() {
             addHouse(houseName.current.value, houseLocation.current.value, houseCost.current.value)
           }}>Add House</button>
         </form>
+        {!homes && (<p>No homes detected here...</p>)}
+        {homes && (
+          homes.map(home => {
+            return <div>
+              <p>{home.name}</p>
+              <p>{home.location}</p>
+              <p>{home.cost}</p>
+            </div>
+          })
+        )}
+        <button onClick={(e) => {
+          handleEvent(e)
+          getHomes()
+        }}>Get Homes</button>
       </header>
     </div>
   );
