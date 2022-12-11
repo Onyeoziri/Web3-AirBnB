@@ -12,14 +12,30 @@ let userDatabase = [
   {
     user: "pmanal1",
     pass: "MockPassword123!"
+  },
+  {
+    user: "admin",
+    pass: "password"
+  },
+  {
+    user: "Mark",
+    pass: "Mark"
   }
 ];
 let homeDatabase = [
   {
+    user: "admin",
     name: "Apartment",
     location: "New York",
     cost: 500,
     reserved: ''
+  },
+  {
+    user: "admin",
+    name: "Cabin",
+    location: "Europe",
+    cost: 200,
+    reserved: 'Mark'
   }
 ];
 
@@ -42,7 +58,16 @@ app.post('/login', jsonParser, (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-  res.send(homeDatabase);
+  const user = req.query.userFilter;
+  const reserved = req.query.reservedFilter;
+  let query = homeDatabase;
+  if(user) {
+    query = query.filter(home => user === home.user)
+  }
+  if(reserved === 'true') {
+    query = query.filter(home => home.reserved !== '')
+  }
+  res.send(query);
 })
 
 app.post('/home', jsonParser, (req, res) => {

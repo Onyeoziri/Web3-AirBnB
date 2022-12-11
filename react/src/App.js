@@ -41,6 +41,9 @@ function App() {
   const houseLocation = useRef();
   const houseCost = useRef();
 
+  const userFilter = useRef();
+  const reservedFilter = useRef();
+
   async function login(username, password) {
     const res = await axios.post('http://localhost:4000/login', {
       user: username,
@@ -52,6 +55,7 @@ function App() {
 
   async function addHouse(name, loc, cost) {
     const res = await axios.post('http://localhost:4000/home', {
+      user: user.user,
       name: name,
       location: loc,
       cost: cost
@@ -59,8 +63,8 @@ function App() {
     console.log(res.data);
   }
 
-  async function getHomes() {
-    const res = await axios.get('http://localhost:4000/home')
+  async function getHomes(userHomes, reservedHomes) {
+    const res = await axios.get(`http://localhost:4000/home?userFilter=${userHomes ? user.user : ''}&reservedFilter=${reservedHomes}`)
     viewHomes(res.data)
   }
 
@@ -87,6 +91,12 @@ function App() {
               Login
             </button>
           </form>
+        )}
+        {user && (
+          <button onClick={(e) => {
+            handleEvent(e);
+            changeUser();
+          }}>Logout</button>
         )}
         <button onClick={(e) => {
           handleEvent(e);
@@ -125,9 +135,11 @@ function App() {
             </div>
           })
         )}
+        <label>Your Homes</label> <input type="checkbox" ref={userFilter} />
+        <label>Reserved Homes</label> <input type="checkbox" ref={reservedFilter} />
         <button onClick={(e) => {
           handleEvent(e)
-          getHomes()
+          getHomes(userFilter.current.checked, reservedFilter.current.checked)
         }}>Get Homes</button>
       </header>
     </div>
