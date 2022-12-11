@@ -37,6 +37,10 @@ function App() {
   const username = useRef();
   const password = useRef();
 
+  const houseName = useRef();
+  const houseLocation = useRef();
+  const houseCost = useRef();
+
   async function login(username, password) {
     const res = await axios.post('http://localhost:4000/login', {
       user: username,
@@ -44,6 +48,15 @@ function App() {
     })
     console.log(res.data);
     changeUser(res.data)
+  }
+
+  async function addHouse(name, loc, cost) {
+    const res = await axios.post('http://localhost:4000/home', {
+      name: name,
+      location: loc,
+      cost: cost
+    })
+    console.log(res.data);
   }
 
   async function testBackend() {
@@ -58,11 +71,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         {!user && (
           <form>
             <input type="input" ref={username}/> <label>username</label>
-            <input type="input" ref={password}/> <label>password</label>
+            <input type="password" ref={password}/> <label>password</label>
             <button onClick={(e) => {
               handleEvent(e);
               login(username.current.value, password.current.value);
@@ -70,7 +82,6 @@ function App() {
               Login
             </button>
           </form>
-          
         )}
         <button onClick={(e) => {
           handleEvent(e);
@@ -81,6 +92,24 @@ function App() {
             Connect Wallet
           </button>
         )}
+        <form>
+          <label>
+            Name
+            <input type="input" ref={houseName} />
+          </label>
+          <label>
+            Location
+            <input type="input" ref={houseLocation} />
+          </label>
+          <label>
+            Cost
+            <input type="input" ref={houseCost} />
+          </label>
+          <button onClick={(e) => {
+            handleEvent(e)
+            addHouse(houseName.current.value, houseLocation.current.value, houseCost.current.value)
+          }}>Add House</button>
+        </form>
       </header>
     </div>
   );

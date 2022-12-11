@@ -8,13 +8,13 @@ const app = express();
 app.use(cors({origin: true}))
 const port = 4000
 
-userDatabase = [
+let userDatabase = [
   {
     user: "pmanal1",
     pass: "MockPassword123!"
   }
 ];
-homeDatabase = [];
+let homeDatabase = [];
 
 app.get('/', (req, res) => {
   res.send('Welcome to the AirBn3 backend!')
@@ -33,6 +33,22 @@ app.post('/login', jsonParser, (req, res) => {
     res.send(user);
   }
 });
+
+app.post('/home', jsonParser, (req, res) => {
+  const home = {
+    name: req.body.name,
+    location: req.body.location,
+    cost: req.body.cost
+  }
+
+  if(!home.name || !home.location || !home.cost) {
+    res.send("Missing params");
+  } else {
+    console.log(home);
+    homeDatabase.push(home);
+    res.status(200);
+  }
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
