@@ -1,146 +1,31 @@
 import './App.css';
 import { useState, useRef } from 'react';
 import axios from "axios";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NavBar from './components/navBar/NavBar';
+import Login from './pages/login/Login';
+import Wallet from './pages/wallet/Wallet';
+import House from './pages/House/House';
 
-function useWallet() {
-  const [wallet, setWallet] = useState(null);
-  return [
-    {
-      wallet
-    }, 
-    async () => {
-      const { ethereum } = window;
-      setWallet(ethereum);
-      if (ethereum) {
-        console.log("ETH detected");
-      } else {
-        console.log("No ETH wallet detected");
-      }
 
-      const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-
-      if (accounts.length !== 0) {
-        const account = accounts[0];
-        console.log("Found an authorized account:", account);
-      } else {
-        console.log("No authorized account found")
-      }
-    }
-  ]
-}
 
 function App() {
-  const [user, changeUser] = useState();
-  const [homes, viewHomes] = useState();
-  const [wallet, setWallet] = useWallet();
 
-  const username = useRef();
-  const password = useRef();
+  
 
-  const houseName = useRef();
-  const houseLocation = useRef();
-  const houseCost = useRef();
-
-  const userFilter = useRef();
-  const reservedFilter = useRef();
-
-  async function login(username, password) {
-    const res = await axios.post('http://localhost:4000/login', {
-      user: username,
-      pass: password
-    })
-    console.log(res.data);
-    changeUser(res.data)
-  }
-
-  async function addHouse(name, loc, cost) {
-    const res = await axios.post('http://localhost:4000/home', {
-      user: user.user,
-      name: name,
-      location: loc,
-      cost: cost
-    })
-    console.log(res.data);
-  }
-
-  async function getHomes(userHomes, reservedHomes) {
-    const res = await axios.get(`http://localhost:4000/home?userFilter=${userHomes ? user.user : ''}&reservedFilter=${reservedHomes}`)
-    viewHomes(res.data)
-  }
-
-  async function testBackend() {
-    const res = await axios.get('http://localhost:4000')
-    console.log(res.data);
-  }
-
-  function handleEvent(e) {
-    e.preventDefault();
-  }
+  
 
   return (
     <div className="App">
       <header className="App-header">
-        {!user && (
-          <form>
-            <input type="input" ref={username}/> <label>username</label>
-            <input type="password" ref={password}/> <label>password</label>
-            <button onClick={(e) => {
-              handleEvent(e);
-              login(username.current.value, password.current.value);
-            }}>
-              Login
-            </button>
-          </form>
-        )}
-        {user && (
-          <button onClick={(e) => {
-            handleEvent(e);
-            changeUser();
-          }}>Logout</button>
-        )}
-        <button onClick={(e) => {
-          handleEvent(e);
-          testBackend()
-        }}>Test Backend</button>
-        {!wallet.wallet && (
-          <button onClick={setWallet}>
-            Connect Wallet
-          </button>
-        )}
-        <form>
-          <label>
-            Name
-            <input type="input" ref={houseName} />
-          </label>
-          <label>
-            Location
-            <input type="input" ref={houseLocation} />
-          </label>
-          <label>
-            Cost
-            <input type="input" ref={houseCost} />
-          </label>
-          <button onClick={(e) => {
-            handleEvent(e)
-            addHouse(houseName.current.value, houseLocation.current.value, houseCost.current.value)
-          }}>Add House</button>
-        </form>
-        {!homes && (<p>No homes detected here...</p>)}
-        {homes && (
-          homes.map(home => {
-            return <div>
-              <p>{home.name}</p>
-              <p>{home.location}</p>
-              <p>{home.cost}</p>
-            </div>
-          })
-        )}
-        <label>Your Homes</label> <input type="checkbox" ref={userFilter} />
-        <label>Reserved Homes</label> <input type="checkbox" ref={reservedFilter} />
-        <button onClick={(e) => {
-          handleEvent(e)
-          getHomes(userFilter.current.checked, reservedFilter.current.checked)
-        }}>Get Homes</button>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/wallet' element={<Wallet />}></Route>
+            <Route path='/house' element={<House />}></Route>
+          </Routes>
+        </BrowserRouter>
       </header>
     </div>
   );
