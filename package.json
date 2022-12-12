@@ -8,6 +8,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "date-fns": "^2.29.3",
+    "ether": "^0.0.9",
+    "ethers": "^5.7.2",
     "hardhat": "^2.11.2",
     "install-peerdeps": "^3.0.3",
     "react": "^18.2.0",
