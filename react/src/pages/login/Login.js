@@ -1,8 +1,9 @@
 import { React, useState, useRef } from 'react'
 import * as userService from '../../core/userService';
 import { handleEvent } from '../../core/handleEvent';
+import './login.css';
 
-function Login(props) {
+function Login() {
   const username = useRef();
   const password = useRef(); 
 
@@ -14,7 +15,7 @@ function Login(props) {
   }
 
   return (
-    <>
+    <div className='login'>
       {user ? 
         <>
           <p>Username: {user.user}</p>
@@ -25,8 +26,12 @@ function Login(props) {
           }}>Logout</button>
         </> :
         <form>
-          <input type="input" ref={username}/> <label>username</label>
-          <input type="password" ref={password}/> <label>password</label>
+          <div className='input'>
+            <label>Username:</label> <input type="input" ref={username}/> <br />
+          </div>
+          <div className='input'>
+            <label>Password:</label> <input type="password" ref={password}/> <br />
+          </div>
           <button onClick={(e) => {
             handleEvent(e);
             login();
@@ -34,7 +39,7 @@ function Login(props) {
             Login
           </button>
         </form>}
-    </>
+    </div>
   )
 }
 

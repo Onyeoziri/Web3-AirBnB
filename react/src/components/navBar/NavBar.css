@@ -1,7 +1,40 @@
+
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: antiquewhite;
+  border: 2px solid black;
+  margin-bottom: 10px;
+}
+
 nav {
-  background-color: #282c34;
+  display: flex;
 }
-a {
-  color: rgb(32, 122, 249);
-  margin-right: 10px;
+
+.link {
+  display: flex;
+  flex-direction: row;
+
+  margin: 0px 5px;
+  padding: 5px 20px;
+
+  border: 1px solid black;
+
 }
+
+.link:link { text-decoration: none; }
+
+
+.link:visited { text-decoration: none; }
+
+
+.link:hover {
+  text-decoration: none; 
+  background-color: rgb(250, 222, 186);
+}
+
+
+.link:active { text-decoration: none; }
