@@ -26,7 +26,7 @@ async function reserve(id, homeOwner, requester) {
     const careerContract = getContract();
 
     try {
-      // await careerContract.reserve(id, homeOwner, requester);
+      await careerContract.reserve(id, homeOwner, requester);
       await axios.patch('http://localhost:4000/home', {
         id: id,
         reserved: requester
@@ -47,7 +47,7 @@ async function unreserve(id) {
     const careerContract = getContract();
 
     try {
-      // await careerContract.unreserve(id);
+      await careerContract.unreserve(id);
       await axios.patch('http://localhost:4000/home', {
         id: id,
         reserved: ''
