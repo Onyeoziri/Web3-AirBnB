@@ -1,4 +1,4 @@
-import {React, useState, useRef, useEffect} from 'react'
+import {React, useState, useRef} from 'react'
 import axios from 'axios';
 import * as userService from '../../core/userService'
 import { handleEvent } from '../../core/handleEvent';
@@ -52,7 +52,7 @@ function House() {
         {homes ?
           <div className='homes'>
             {homes.map(home => {
-            return <HomeCard owner={home.user} name={home.name} location={home.location} cost={home.cost} reserved={home.reserved}/>
+            return <HomeCard home={home}/>
             })}
           </div>
            :

@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 
 const app = express();
-app.use(cors({origin: true}))
+app.use(cors())
 const port = 4000
 
 let userDatabase = [
@@ -24,6 +24,7 @@ let userDatabase = [
 ];
 let homeDatabase = [
   {
+    id: 1,
     user: "admin",
     name: "Apartment",
     location: "New York",
@@ -31,6 +32,7 @@ let homeDatabase = [
     reserved: ''
   },
   {
+    id: 2,
     user: "admin",
     name: "Cabin",
     location: "Europe",
@@ -38,6 +40,8 @@ let homeDatabase = [
     reserved: 'Mark'
   }
 ];
+
+let ids = 3;
 
 app.get('/', (req, res) => {
   res.send('Welcome to the AirBn3 backend!')
@@ -72,6 +76,7 @@ app.get('/home', (req, res) => {
 
 app.post('/home', jsonParser, (req, res) => {
   const home = {
+    id: ids,
     user: req.body.user,
     name: req.body.name,
     location: req.body.location,
@@ -83,9 +88,18 @@ app.post('/home', jsonParser, (req, res) => {
     res.send("Missing params");
   } else {
     console.log(home);
+    ids++;
     homeDatabase.push(home);
     res.status(200);
   }
+});
+
+app.patch('/home', jsonParser, (req, res) => {
+  console.log(req.body.reserved);
+  const home = homeDatabase.find(home => {if(req.body.id == home.id) { return home; } });
+  console.log("old home:", home);
+  home.reserved = req.body.reserved;
+  console.log("bew home:", home);
 })
 
 app.listen(port, () => {
