@@ -72,6 +72,7 @@ app.get('/home', (req, res) => {
 
 app.post('/home', jsonParser, (req, res) => {
   const home = {
+    user: req.body.user,
     name: req.body.name,
     location: req.body.location,
     cost: req.body.cost,
