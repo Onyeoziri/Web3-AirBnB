@@ -1,0 +1,205 @@
+.hero{
+    margin: -1em -5vw;
+    position: relative;
+    background-color: rgb(106, 107, 107);
+    
+    height: 80vh;
+
+
+    img{
+     
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: 0 90%;
+        
+    }
+
+
+    h1{
+        position: absolute;
+        z-index: 1;
+        color: white;
+        font-size: clamp(1.5rem, 2.34vw + 0.53rem, 5rem);
+        padding-left: .2em;
+        left: 10vw;
+        top: 30%;
+        
+    }
+    
+}
+
+
+
+.search_Hero{
+    margin-left: 9vw;
+    border-style: solid;
+    border-color: black;
+    width: 70vw;
+    border-radius: 3em;
+    border-width: thin;
+
+    position:relative;
+    z-index: 2;
+
+    height: 6vh;
+    margin-top: -2.5vh;
+    padding: 0 .8rem;
+
+    background-color: hsl(51, 37%, 93%);
+
+    outline: 1.5rem solid hsl(65, 30%, 92%);
+
+    
+    ul{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        margin-top: 0;
+        height: 100%;
+        padding-left: 1rem;
+    }
+
+    li{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+
+        .react-select__control{
+            justify-content: center;
+            height: 6vh;
+            width: 20vw;
+            border: none;
+            border-radius: .2rem;
+
+            background-color: hsl(51, 37%, 93%);            
+        }
+
+        .react-select__control--is-focused{
+            background-color: hsl(170, 86%, 14%);
+            color: rgb(246, 247, 248);
+            border-color: transparent;
+
+            .react-select__placeholder {
+                color: rgb(246, 247, 248);
+            }
+
+            .react-select__single-value{
+                color: rgb(246, 247, 248);
+
+                
+            }
+        }
+        
+        .react-select__placeholder{
+            color: black;
+        }
+        .react-select__single-value {
+            color: black;
+        }
+        .react-select__indicators{
+            display: none;
+        }
+        .react-select__menu{
+            border-radius: .5rem;
+            background-color: hsl(51, 37%, 93%);
+            
+        }
+        .react-select__option{
+            &:hover{
+                background-color: hsl(170, 86%, 14%);
+                color: hsl(51, 37%, 93%);
+            }
+        }
+
+        input{
+            height: 5.8vh;
+            width: 22vw;
+            border: none;
+
+            background-color: hsl(51, 37%, 93%);
+
+            &::placeholder{
+                color: black;
+                padding-left: .6em;
+                font-size: 1rem;
+            }  
+
+            &:focus{
+                background-color: hsl(170, 86%, 14%);
+                color: aliceblue;
+                border-color: transparent;
+
+                &::placeholder{
+                    color: aliceblue;
+                }
+            }      
+
+            
+        }
+    }
+
+    .btn2{
+        height: 75%;
+        width: 30%;
+        border-radius: 2.5em;
+        border: none;
+        font-size: 1rem;
+        background-color: hsl(44, 96%, 68%);
+        cursor: pointer;
+
+        &:hover{
+            background-color: hsl(42, 98%, 64%);
+        }
+    }
+}
+
+.content{
+
+    h1{
+        font-size: 4vh;
+        color: #696571;
+    }
+
+    h2{
+        text-align: center;
+        color: #434245;
+        font-size: 2vh;
+        letter-spacing: .1rem;
+    }
+
+}
+
+.noCalander{
+    display: none;
+}
+
+.rdrDefinedRangesWrapper{
+    display: none;
+}
+.rdrDateDisplayWrapper{
+    display: none;
+}
+
+.showCalender{
+    z-index: 20;
+    position: absolute;
+}
+
+.selectDate{
+    input{
+        font-size: 1rem;
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width: 50rem) {
+    .hero{
+        height: 30vh;
+    }
+
+}

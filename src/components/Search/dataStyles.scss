@@ -1,0 +1,57 @@
+datalist {
+    position: absolute;
+    background-color: white;
+   
+}
+
+option {
+    background-color: white;
+    padding: 4px;
+    color: blue;
+    margin-bottom: 1px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.GuessCounter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img{ 
+    padding-right: .6rem;
+  }
+
+
+  .btnG{
+    height: 60%;
+    width: 1.5vw;
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: transparent;
+    align-content: center;
+    cursor: pointer;
+
+    &:hover{
+      background-color: rgba(219, 220, 210, 0.901);
+    }
+
+  }
+  
+}
+
+
+.search_City{
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img{
+    width: 1.3rem;
+    padding-right: .2rem;
+    padding-top: .5rem;
+  }
+}

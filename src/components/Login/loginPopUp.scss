@@ -1,0 +1,78 @@
+.loginClose {
+    display: none;
+
+}
+
+.modBackDrop{
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(28, 28, 28, 0.237);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: -5vw;
+    margin-top: 91.5vh;
+
+}
+
+.btnC{
+    font-size: 1.1rem;
+    margin-top: 1vh;
+    margin-left: 1vw;
+    position: fixed;
+    
+    &:hover {
+        font-size: 1.2rem;
+    }
+
+}
+
+.loginOpen{
+    background-color: white;
+    height: 50vh;
+    width: 35rem;    
+    border-radius: 1.7rem;
+    border-color: #BEB7A3;
+    align-items: center;
+    align-content: center;
+
+
+    box-shadow: rgba(119, 116, 116, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+    text-align: center;
+
+    h1{
+        font-size: 2.5rem;
+        color: hsl(0, 43%, 27%);
+        margin-top: 8rem;
+        padding-bottom: 0rem;
+    }
+
+
+    img{
+        width: 8rem;
+        padding-bottom: 1rem;
+    }
+    p{
+        padding: .5rem 0;
+        padding-bottom: 1rem;
+    }
+
+    .btnL{
+        display:inline-block;
+        background-color: rgb(211, 150, 53);
+        height: 5rem;
+        width: 16rem;
+        border-radius: 1.5rem;
+
+        font-size: 1.2rem;
+
+        &:hover{
+            background-color: rgb(219, 141, 16);
+        }
+        
+    }
+}

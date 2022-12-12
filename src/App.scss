@@ -1,0 +1,17 @@
+:root{
+    background-color: hsl(65, 30%, 92%);
+    font-family: 'Raleway', 'Open Sans';
+    align-items: center;
+    margin: 0 5vw;
+}
+
+.App{
+    
+}
+
+@media screen and (max-width: 50em) {
+    .App{
+        margin: 0% 2vw;
+    }
+    
+}

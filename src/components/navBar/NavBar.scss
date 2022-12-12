@@ -1,0 +1,149 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 0em;
+    position: relative; 
+    height: 6vh;   
+    
+    .navOptions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        li{
+            list-style: none;
+            margin: 0 0.4em;
+            position: relative;
+        }
+
+    }
+
+    button, a{  
+        img{
+            margin: 0em .5em;
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        cursor: pointer; 
+    }
+
+    button {
+        min-width: fit-content;
+        min-height: 3em;
+        padding: 0 1.5em;
+        border-radius: 2em;
+        background: transparent;
+        border: none;
+    }
+    
+
+    button:hover {
+        background:hsla(69, 14%, 54%, 0.364);
+        transition: 0.7s;
+    }
+    
+    .button2 {
+        box-shadow: 0em .25em hsla(0, 1%, 45%, 0.338);
+        padding: 0 1em;
+    }
+
+    #mobile{
+        .button2{
+            box-shadow:none
+        }
+
+        display: none;
+    }
+
+    a{
+        text-decoration: none;
+        color: inherit;
+        
+        h2{
+            color: hsl(180, 83%, 7%);
+        }
+    }
+
+    .button1 .toSignOut{
+        display: none;
+    }
+
+}
+
+.icon{
+    width: 2.5em;
+}
+
+@media screen and (max-width: 50em) {
+    nav{
+        
+        
+        .icon {
+            filter: invert(7%) sepia(23%) saturate(3860%) hue-rotate(336deg) brightness(50%) contrast(99%);
+        }
+
+        .navOptions{
+            display: none;
+        }
+
+        #mobile{
+            display: block;
+            z-index: 4;
+        }
+        .navMobileOptions{ 
+            z-index: 3;
+            position: absolute;
+            display: block;
+            flex-direction: column;
+            padding: 0;
+            
+
+            background-color: hsl(83, 41%, 89%);
+            width: 100vh;
+            height: 1000vh;
+            top: 0;
+            left: 0; 
+            margin: 0 5.4em;
+             
+
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+
+            transition: 350ms;
+            
+            ul{
+                margin: 5em 6em;
+            }
+
+            li{
+                font-size: 1.5em;
+                list-style: none;
+                margin: 2em 5em;
+                position: relative;
+                width: fit-content;
+
+                transform: translate(10%, 150%);
+            }
+
+            .profileMenu{
+                display: none;
+            }
+
+        }
+
+        .button1 {
+            height: 6em;
+            min-width: 20em;
+            padding:  0em;
+            border-radius: 2.5em;
+        }
+        
+    }
+        
+}
