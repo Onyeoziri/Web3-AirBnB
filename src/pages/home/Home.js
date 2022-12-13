@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './home.scss'
 import hero1 from '../../assets/Home/hero1.svg'
 import {GuessCount, SearchCitys, SelectDate} from '../../components/index'
-import { DateRangePicker } from 'react-date-range'
 import { addDays } from 'date-fns'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -18,6 +17,8 @@ function Home() {
   ]);
 
   const [isOpen, setIsOpen] = useState(false)
+  const [wAddress, setWAddress] = useState(false) //wallet Address
+  const [wBalance, setWBalance] = useState(false) //wallet Balance
 
   const openDate = () => {
     setIsOpen(!isOpen)

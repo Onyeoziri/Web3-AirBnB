@@ -47,7 +47,7 @@
     h1{
         font-size: 2.5rem;
         color: hsl(0, 43%, 27%);
-        margin-top: 8rem;
+        margin-top: 3rem;
         padding-bottom: 0rem;
     }
 
@@ -75,4 +75,8 @@
         }
         
     }
+}
+
+.dontDisplay{
+    display: none;
 }
